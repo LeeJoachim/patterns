@@ -1,0 +1,28 @@
+@startuml uml
+
+Command o-- SimpleRemoteControl
+interface Command {
+    void excute();
+}
+
+class LightOnCommand implements Command{
+    Light light;
+
+    LightOnCommand(Light light)
+
+    public void excute()
+}
+
+Light o-- LightOnCommand
+class Light {
+    void on()
+    void off()
+}
+
+class SimpleRemoteControl {
+    Command command;
+    void setCommand(Command command)
+    void buttonWasPressed()
+}
+
+@enduml

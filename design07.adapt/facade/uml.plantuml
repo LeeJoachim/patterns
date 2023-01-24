@@ -1,0 +1,64 @@
+@startuml uml
+
+class Amplifier {
+
+}
+class Tuner {
+
+}
+class StreamingPlayer {
+
+}
+class Projector {
+
+}
+class TheaterLights {
+
+}
+class Screen {
+
+}
+
+PopcornPopper o-- HomeTheaterFacade
+Amplifier o-- HomeTheaterFacade
+Tuner o-- HomeTheaterFacade
+StreamingPlayer o-- HomeTheaterFacade
+Projector o-- HomeTheaterFacade
+TheaterLights o-- HomeTheaterFacade
+Screen o-- HomeTheaterFacade
+class PopcornPopper {
+    void on()
+    void off()
+}
+
+
+
+class HomeTheaterFacade {
+
+    Amplifier amplifier;
+    Tuner tuner;
+    StreamingPlayer streamingPlayer;
+    Projector projector;
+    TheaterLights theaterLights;
+    Screen screen;
+    PopcornPopper popcornPopper;
+
+    HomeTheaterFacade(Amplifier amplifier,
+                        Tuner tuner,
+                        StreamingPlayer streamingPlayer,
+                        Projector projector,
+                        TheaterLights theaterLights,
+                        Screen screen,
+                        PopcornPopper popcornPopper)
+
+    void watchMovie()
+    void endMovie()
+}
+
+annotation TestDriver {
+
+HomeTheaterFacade facade = new HomeTheaterFacade(amplifier, tuner, streamingPlayer, projector, theaterLights, screen, popcornPopper);
+        facade.watchMovie();
+        facade.endMovie();
+}
+@enduml

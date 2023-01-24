@@ -1,0 +1,60 @@
+@startuml uml
+
+class MenuComponent {
+
+    void add(MenuComponent menuComponent)
+    void print()
+}
+
+class MenuItem extends MenuComponent {
+    String name;
+    String description;
+
+    MenuItem(String name, String description)
+
+    public String getName()
+    public String getDescription()
+
+    void print()
+}
+
+class Menu extends MenuComponent{
+
+    ArrayList<MenuComponent> list = new ArrayList<MenuComponent>();
+    String name;
+    String description;
+
+    Menu (String name, String description)
+
+    void add(MenuComponent menuComponent)
+    public String getName()
+    public String getDescription()
+
+    void print()
+}
+
+class Waitress {
+    MenuComponent allMenus;
+
+    Waitress(MenuComponent allMenus)
+
+    void printMenu()
+}
+
+annotation TestDriver {
+        MenuComponent dinerMenu = new Menu("DINER MENU", "Dinner");
+        MenuComponent cafeMenu = new Menu("CAFE MENU", "Cafe");
+
+        MenuComponent allMenus = new Menu("ALL MENUS", "All Menus Combined");
+
+        allMenus.add(dinerMenu);
+        allMenus.add(cafeMenu);
+
+        dinerMenu.add(new MenuItem("pancake", "with scrambled eggs and toast"));
+        cafeMenu.add(new MenuItem("coffee", "hot americano coffee made by fresh beans"));
+
+        Waitress waitress = new Waitress(allMenus);
+        waitress.printMenu();
+}
+
+@enduml

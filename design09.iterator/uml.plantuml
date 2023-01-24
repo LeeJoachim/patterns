@@ -1,0 +1,69 @@
+@startuml uml
+
+class MenuItem {
+    String name
+    double price
+
+    MenuItem (String name, double price) 
+    public String getName()
+    public double getPrice()
+}
+
+class DinerIterator implements Iterator {
+    MenuItem[] menuItems;
+    int position = 0;
+
+    DinerIterator(MenuItem[] menuItems)
+
+    public MenuItem next()
+
+    public boolean hasNext()
+}
+
+interface Menu {
+    Iterator<MenuItem> createIterator();
+}
+class PancakeHouseMenu implements Menu {
+
+    List<MenuItem> menuItems;
+
+    PancakeHouseMenu()
+
+    void addItem(String name, double price)
+
+    public Iterator<MenuItem> createIterator()
+}
+class DinerMenu implements Menu {
+
+    static final int MAX_ITEMS = 6;
+    int index = 0;
+    MenuItem[] menuItems;
+
+    DinerMenu()
+
+    void addItem(String name, double price)
+
+    public Iterator<MenuItem> createIterator()
+}
+
+class Waitress {
+    ArrayList<Menu> menus;
+
+    Waitress(ArrayList<Menu> menus)
+
+    void printMenu()
+
+    void printMenu(Iterator<MenuItem> iterator)
+}
+
+annotation TestDriver {
+        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
+        DinerMenu dinerMneu = new DinerMenu();
+        ArrayList<Menu> menus = new ArrayList<Menu>();
+        menus.add(pancakeHouseMenu);
+        menus.add(dinerMneu);
+        Waitress waitress = new Waitress(menus);
+        waitress.printMenu();
+}
+
+@enduml

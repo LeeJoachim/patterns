@@ -1,0 +1,35 @@
+@startuml uml
+
+abstract class Beverage {
+
+    final void prepare() 
+
+    void boil() 
+    abstract void brew();
+    void pour() 
+    abstract void addCondiments();
+
+    boolean hook() 
+
+}
+
+class Coffee extends Beverage {
+
+    void brew()
+    void addCondiments()
+
+    boolean hook()
+}
+
+class Tea extends Beverage {
+
+    void brew() 
+    void addCondiments() 
+}
+
+annotation TestDriver {
+    Beverage coffee = new Coffee();
+    coffee.prepare();
+}
+
+@enduml

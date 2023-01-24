@@ -1,0 +1,29 @@
+@startuml uml
+
+abstract class Beverage {
+    protected String description
+    String getDescription() 
+    abstract double cost()
+}
+        class Espresso extends Beverage{
+            Espresso() 
+            public double cost() 
+        }
+
+        abstract class CondimentDecorator extends Beverage {
+            Beverage beverage
+            public abstract String getDescription()
+        }
+
+                class Mocha extends CondimentDecorator {
+                    public Mocha(Beverage beverage) 
+                    public String getDescription() 
+                    public double cost() 
+                }
+
+annotation TestDriver {
+    Beverage beverage = new Espresso();
+    beverage = new Mocha(beverage);
+}
+
+@enduml

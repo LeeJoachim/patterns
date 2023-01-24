@@ -1,0 +1,53 @@
+@startuml uml
+Cheese <.. PizzaIngredientFactory
+interface Cheese {
+    public String toString();
+}
+class MozzarellaCheese implements Cheese {
+    public String toString()
+}
+
+interface PizzaIngredientFactory {
+    Cheese createCheese()
+}
+NYPizzaIngredientFactory o-- CheesePizza
+class NYPizzaIngredientFactory implements PizzaIngredientFactory{
+    public Cheese createCheese()
+}
+
+Pizza <.. PizzaStore
+abstract class Pizza {
+    String name
+    Cheese cheese
+
+    public void setName(String name)
+    abstract void prepare()
+}
+
+class CheesePizza extends Pizza {
+    PizzaIngredientFactory factory;
+
+    CheesePizza(PizzaIngredientFactory factory)
+    void prepare()
+}
+
+
+abstract class PizzaStore {
+
+    abstract Pizza createPizza(String s)
+    Pizza orderPizza(String s)
+}
+
+class NYPizzaStore extends PizzaStore {
+
+    Pizza createPizza(String s)
+}
+
+annotation TestDriver {
+    PizzaStore nyStore = new NYPizzaStore();
+    Pizza pizza = nyStore.orderPizza("cheese");
+    System.out.println(pizza.name);
+    System.out.println(pizza.cheese.toString());
+}
+
+@enduml

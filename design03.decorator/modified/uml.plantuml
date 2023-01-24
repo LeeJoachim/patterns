@@ -1,0 +1,27 @@
+@startuml uml
+
+abstract class Beverage {
+    String description
+    int cost
+
+    void setDescription(String description)
+    void setCost(int cost)
+    String getDescription()
+    int getCost()
+}
+
+        class Espresso extends Beverage{
+        }
+
+        interface CondimentDecorator {
+        }
+        class Mocha extends Beverage implements CondimentDecorator {
+            public Mocha(Beverage beverage) 
+        }
+
+annotation TestDriver {
+    Beverage beverage = new Espresso();
+    beverage = new Mocha(beverage);
+}
+
+@enduml

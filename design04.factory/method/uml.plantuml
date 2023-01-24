@@ -1,0 +1,37 @@
+@startuml uml
+
+Pizza <.. PizzaFactory
+class Pizza {
+    String name;
+    int cost;
+
+    void prepare() 
+}
+
+class CheesePizza extends Pizza{
+    CheesePizza() 
+}
+
+PizzaFactory o-- PizzaSotre
+class PizzaFactory {
+
+    Pizza createPizza(String s)
+}
+
+class PizzaSotre {
+
+    PizzaFactory factory;
+
+    PizzaSotre(PizzaFactory factory)
+    Pizza orderPizza(String s)
+}
+
+
+annotation TestDriver {
+        PizzaFactory factory = new PizzaFactory();
+        PizzaSotre store = new PizzaSotre(factory);
+        Pizza pizza = store.orderPizza("cheese");
+
+        System.out.println(pizza.cost);
+}
+@enduml

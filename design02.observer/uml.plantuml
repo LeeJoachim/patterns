@@ -1,0 +1,30 @@
+@startuml uml
+
+Subject o-- Observer
+class Subject {
+    ArrayList<Observer> observers;
+    int temperature;
+
+    void registerObserver(Observer o)
+    void removeObserver(Observer o)
+    void updateObserver()    
+    void setTemperature(int temperature)
+    int getTemperature()
+}
+
+class Observer {
+    Subject subject;
+    int temperature;
+
+    Observer(Subject subject)
+
+    int getTemperature()
+    void updateDataMembers()
+}
+
+annotation TestDriver {
+    Subject subject = new Subject();
+    Observer observer = new Observer(subject);
+}
+
+@enduml

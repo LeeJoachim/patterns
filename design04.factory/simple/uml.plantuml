@@ -1,0 +1,29 @@
+@startuml uml
+class Pizza {
+
+    String name
+    String sauce
+
+    void prepare()
+}
+
+class NYStyleCheesePizza extends Pizza {
+    NYStyleCheesePizza()
+}
+
+Pizza <.. PizzaStore
+abstract class PizzaStore {
+    Pizza orderPizza(String s)
+    abstract Pizza createPizza(String s)
+}
+
+class NYPizzaStore extends PizzaStore{
+
+    Pizza createPizza(String s)
+}
+
+annotation TestDriver{
+    PizzaStore nyStore = new NYPizzaStore();
+    Pizza pizza = nyStore.orderPizza("cheese");
+}
+@enduml

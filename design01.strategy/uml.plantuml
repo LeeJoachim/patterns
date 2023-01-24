@@ -1,0 +1,33 @@
+@startuml uml
+interface FlyBehavior {
+    void fly();
+}
+        class FlyNoWay implements FlyBehavior{
+            public void fly() 
+        }
+        class FlyWithWings implements FlyBehavior{
+            public void fly() 
+        }
+
+
+FlyBehavior o-- Duck
+abstract class Duck {
+    FlyBehavior flyBehavior;
+
+    public void setFlyBehavior(FlyBehavior flyBehavior) 
+    abstract void performFly();
+}
+        class RubberDuck extends Duck {
+            public RubberDuck() 
+            public void performFly() 
+        }
+
+annotation TestDriver {
+        Duck rubberDuck = new RubberDuck();
+        rubberDuck.performFly();
+        // rubberDuck.setFlyBehavior(() -> System.out.println("I can fly!"));
+        rubberDuck.setFlyBehavior(new FlyWithWings());
+        rubberDuck.performFly();
+}
+
+@enduml
