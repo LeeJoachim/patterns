@@ -1,0 +1,48 @@
+@startuml uml
+
+State *-- Machine
+interface State {
+}
+
+
+class SoldOutState implements State {
+    Machine machine;
+    public void refill()
+}
+
+NoCoinState <.. SoldOutState
+
+class NoCoinState implements State {
+    Machine machine;
+    public void insertCoin()
+}
+
+HasCoinState <..> NoCoinState
+
+class HasCoinState implements State {
+    Machine machine;
+
+    public void ejectCoin()
+    public void trunCrank()
+
+}
+SoldState <.. HasCoinState
+
+class SoldState implements State {
+    Machine machine;
+    public void dispense()
+}
+
+class Machine {
+
+    State soldOutState;
+    State noCoinState;
+    State hasCoinState;
+    State soldState;
+
+    State state;
+
+}
+
+
+@enduml

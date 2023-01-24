@@ -1,0 +1,12 @@
+@startuml uml
+
+interface bbb {
+
+}
+
+class aaa extends bbb {
+
+}
+
+
+@enduml
